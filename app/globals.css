@@ -1,26 +1,110 @@
 @import "tailwindcss";
 
+/* ─── Light mode (default) — Warm Cream & Red ─── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg:         #E8DDD0;
+  --bg-alt:     #DCCFC0;
+  --surface:    #D3C5AE;
+  --border:     #B8A48A;
+  --border-2:   #180F06;
+  --text:       #180F06;
+  --text-2:     #6E5640;
+  --accent:     #C41230;
+  --accent-h:   #9E0F26;
+  --rule:       #180F06;
+  --rule-thin:  #B8A48A;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Dark mode — Deep Ink & Red (same accent as light) ─── */
+[data-theme="dark"] {
+  --bg:         #0C0908;
+  --bg-alt:     #18140E;
+  --surface:    #211A12;
+  --border:     #2E2318;
+  --border-2:   #F2E8D5;
+  --text:       #F2E8D5;
+  --text-2:     #7A6A58;
+  --accent:     #C41230;
+  --accent-h:   #9E0F26;
+  --rule:       #F2E8D5;
+  --rule-thin:  #2E2318;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+  cursor: none;
+}
+
+* { cursor: none !important; }
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* ─── Typography ─── */
+/* .serif maps to Bodoni Moda — the editorial/Vogue-style display font */
+.serif {
+  font-family: var(--font-bodoni), Georgia, serif;
+}
+
+/* .mono maps to DM Mono — used for labels, tags, and UI metadata */
+.mono {
+  font-family: var(--font-dm-mono), monospace;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ─── Utility rules ─── */
+.rule-full {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--rule);
+}
+
+.rule-thin {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--rule-thin);
+}
+
+/* ─── Pulse animation for status indicators ─── */
+@keyframes heroPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.3; transform: scale(0.75); }
+}
+
+/* ─── Theme transition ─── */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+
+/* Suppress transition on transform/opacity so Framer Motion isn't slowed */
+[data-framer-motion] {
+  transition-property: none !important;
 }
