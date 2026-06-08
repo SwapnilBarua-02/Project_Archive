@@ -56,9 +56,34 @@ export const projects: Project[] = [
     description:
       "Static landing page doubling as an investor-facing pitch deck for a startup concept. Built for persuasion and clarity — clean hierarchy, fast load, and a downloadable PDF presentation bundled alongside.",
     tech: ["HTML", "CSS", "Design"],
-    github: "https://github.com/SwapnilBarua", // ← update: your actual repo URL
-    live: "#", // ← update: live URL if deployed
+    github: "https://github.com/SwapnilBarua",
+    live: "#",
     type: "Web / Design",
     year: "2024",
+  },
+  {
+    id: "swaap-v1",
+    num: "05",
+    name: "Swaap.jpg",
+    tagline: "Where photography lives",
+    description:
+      "The first edition of a personal photography portfolio — an archive of images shot across Japan, Australia, Thailand, and beyond. Built to put the work front and centre with minimal interface and maximum atmosphere.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    github: "https://github.com/SwapnilBarua",
+    type: "Photography Portfolio",
+    year: "2024",
+  },
+  {
+    id: "swaap-v2",
+    num: "06",
+    name: "Swaap.jpg v2",
+    tagline: "A cinematic archive, rebuilt",
+    description:
+      "Second edition of the photography portfolio — rebuilt on Next.js 16 with a Cloudinary CDN backend for fast image delivery across collections: People, Places (Japan, Australia, Thailand), and Things. Features a custom infinite parallax canvas on the Explore page and a deep dark aesthetic (#050505) that puts the photography at the centre.",
+    tech: ["Next.js 16", "TypeScript", "Tailwind v4", "Framer Motion", "Cloudinary"],
+    github: "https://github.com/SwapnilBarua",
+    live: "https://swaap-jpg-v2.vercel.app/",
+    type: "Photography Portfolio",
+    year: "2025",
   },
 ];
