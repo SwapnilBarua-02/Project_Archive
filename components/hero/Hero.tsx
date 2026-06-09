@@ -73,20 +73,20 @@ export default function Hero() {
           <div style={{ width: "28px", height: "1px", background: "var(--accent)" }} />
         </motion.div>
 
-        {/* Line 1 — "A" */}
+        {/* Line 1 — "La" */}
         <div style={{ overflow: "hidden" }}>
           <motion.div
             initial={{ y: "110%" }}
             animate={{ y: "0%" }}
             transition={{ duration: 1.1, delay: 0.38, ease: spring }}
             className="serif"
-            style={{ fontSize: "clamp(42px, 6.5vw, 100px)", fontWeight: 600, lineHeight: 1.0, letterSpacing: "-0.02em", color: "var(--text)", paddingBottom: "4px" }}
+            style={{ fontSize: "clamp(42px, 6.5vw, 100px)", fontWeight: 400, lineHeight: 1.0, letterSpacing: "-0.02em", color: "var(--text)", paddingBottom: "4px" }}
           >
-            A
+            La
           </motion.div>
         </div>
 
-        {/* Line 2 — "collexion" italic + accent */}
+        {/* Line 2 — "Collexion" italic + accent */}
         <div style={{ overflow: "hidden" }}>
           <motion.div
             initial={{ y: "110%" }}
@@ -95,20 +95,20 @@ export default function Hero() {
             className="serif"
             style={{ fontSize: "clamp(42px, 6.5vw, 100px)", fontWeight: 400, fontStyle: "italic", lineHeight: 1.0, letterSpacing: "-0.01em", color: "var(--accent)", paddingBottom: "4px" }}
           >
-            collexion
+            <em>Collexion</em>
           </motion.div>
         </div>
 
-        {/* Line 3 — "of creative works." */}
+        {/* Line 3 — "of my works" */}
         <div style={{ overflow: "hidden" }}>
           <motion.div
             initial={{ y: "110%" }}
             animate={{ y: "0%" }}
             transition={{ duration: 1.1, delay: 0.58, ease: spring }}
             className="serif"
-            style={{ fontSize: "clamp(42px, 6.5vw, 100px)", fontWeight: 600, lineHeight: 1.0, letterSpacing: "-0.02em", color: "var(--text)", paddingBottom: "4px" }}
+            style={{ fontSize: "clamp(42px, 6.5vw, 100px)", fontWeight: 400, lineHeight: 1.0, letterSpacing: "-0.02em", color: "var(--text)", paddingBottom: "4px" }}
           >
-            of creative works.
+            of my works
           </motion.div>
         </div>
 

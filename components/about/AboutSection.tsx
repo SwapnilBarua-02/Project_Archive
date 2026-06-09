@@ -79,19 +79,14 @@ export default function AboutSection() {
             style={{ display: "flex", flexDirection: "column", gap: "18px" }}
           >
             <p style={{ fontSize: "15px", lineHeight: 1.75, color: "var(--text)" }}>
-              I&apos;m Swapnil Barua — a full-stack developer based in Sydney, Australia.
-              I build fast, thoughtful software across the stack: web apps, mobile, APIs,
-              and everything in between.
+              I&apos;m Swapnil Barua, a full-stack developer in my final year of an IT degree at Macquarie University, Sydney.
+              I build across the full stack: web apps, mobile, APIs, backend systems. I like working close to the problem.
             </p>
             <p style={{ fontSize: "15px", lineHeight: 1.75, color: "var(--text-2)" }}>
-              My background in photography shapes how I approach code — composition,
-              hierarchy, and the detail that makes something feel right rather than just
-              functional.
+              My background in photography isn&apos;t just a hobby, it&apos;s how I think. Composition, hierarchy, what to leave out.
+              That instinct carries into how I write code and design systems.
             </p>
-            <p style={{ fontSize: "15px", lineHeight: 1.75, color: "var(--text-2)" }}>
-              Currently open to full-stack, frontend-heavy, or mobile opportunities.
-              I work well in small teams that move fast and ship real things.
-            </p>
+
           </motion.div>
 
           <motion.div
