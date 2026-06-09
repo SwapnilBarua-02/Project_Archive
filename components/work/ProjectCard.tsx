@@ -237,25 +237,22 @@ export default function ProjectCard({ project }: { project: Project }) {
                       fontSize: "10px",
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
-                      color: "var(--text-2)",
+                      color: "var(--bg)",
                       textDecoration: "none",
                       display: "flex",
                       alignItems: "center",
                       gap: "8px",
-                      borderBottom: "1px solid var(--rule-thin)",
-                      paddingBottom: "4px",
-                      transition: "color 0.15s, border-color 0.15s",
+                      background: "var(--accent)",
+                      border: "1px solid var(--accent)",
+                      padding: "8px 14px",
+                      transition: "opacity 0.15s",
                     }}
-                    onMouseEnter={(e) => {
-                      const el = e.currentTarget as HTMLElement;
-                      el.style.color = "var(--accent)";
-                      el.style.borderColor = "var(--accent)";
-                    }}
-                    onMouseLeave={(e) => {
-                      const el = e.currentTarget as HTMLElement;
-                      el.style.color = "var(--text-2)";
-                      el.style.borderColor = "var(--rule-thin)";
-                    }}
+                    onMouseEnter={(e) =>
+                      ((e.currentTarget as HTMLElement).style.opacity = "0.8")
+                    }
+                    onMouseLeave={(e) =>
+                      ((e.currentTarget as HTMLElement).style.opacity = "1")
+                    }
                   >
                     Live Site ↗
                   </a>
