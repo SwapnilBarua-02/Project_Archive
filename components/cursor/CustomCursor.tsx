@@ -3,20 +3,23 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function CustomCursor() {
-  const cursorRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [hovering, setHovering] = useState(false);
+  const [isTouch, setIsTouch] = useState(true);
 
   useEffect(() => {
-    const el = cursorRef.current;
+    // Only show on real pointer (mouse) devices — not touch screens
+    setIsTouch(!window.matchMedia("(pointer: fine)").matches);
+  }, []);
+
+  useEffect(() => {
+    if (isTouch) return;
+    const el = dotRef.current;
     if (!el) return;
 
-    let x = 0, y = 0;
-
     const onMove = (e: MouseEvent) => {
-      x = e.clientX;
-      y = e.clientY;
-      el.style.transform = `translate(${x}px, ${y}px)`;
+      el.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
       if (!visible) setVisible(true);
     };
 
@@ -39,99 +42,45 @@ export default function CustomCursor() {
       document.removeEventListener("mouseleave", onLeave);
       document.removeEventListener("mouseenter", onEnter);
     };
-  }, [visible]);
+  }, [isTouch, visible]);
 
-  const size = hovering ? 24 : 12;
+  if (isTouch) return null;
 
   return (
-    <div
-      ref={cursorRef}
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        pointerEvents: "none",
-        zIndex: 9999,
-        opacity: visible ? 1 : 0,
-        transition: "opacity 0.2s",
-        willChange: "transform",
-      }}
-    >
-      {/* Crosshair */}
+    <>
+      <style>{`
+        @keyframes cursor-glow {
+          0%, 100% { box-shadow: 0 0 4px 2px rgba(196,18,48,0.6), 0 0 10px 4px rgba(196,18,48,0.25); }
+          50%       { box-shadow: 0 0 6px 3px rgba(196,18,48,0.9), 0 0 16px 7px rgba(196,18,48,0.35); }
+        }
+      `}</style>
       <div
+        ref={dotRef}
         style={{
-          position: "absolute",
-          transform: "translate(-50%, -50%)",
-          width: `${size}px`,
-          height: `${size}px`,
-          transition: "width 0.2s, height 0.2s",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          pointerEvents: "none",
+          zIndex: 9999,
+          opacity: visible ? 1 : 0,
+          transition: "opacity 0.2s",
+          willChange: "transform",
         }}
       >
-        {/* Horizontal bar */}
         <div
           style={{
             position: "absolute",
-            top: "50%",
-            left: 0,
-            right: 0,
-            height: "1px",
-            background: "var(--accent)",
-            transform: "translateY(-50%)",
+            transform: "translate(-50%, -50%)",
+            width: hovering ? "7px" : "5px",
+            height: hovering ? "7px" : "5px",
+            borderRadius: "50%",
+            background: "#C41230",
+            transition: "width 0.15s ease, height 0.15s ease",
+            animation: hovering ? "cursor-glow 1.2s ease-in-out infinite" : "none",
+            boxShadow: hovering ? undefined : "0 0 3px 1px rgba(196,18,48,0.4)",
           }}
         />
-        {/* Vertical bar */}
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: 0,
-            bottom: 0,
-            width: "1px",
-            background: "var(--accent)",
-            transform: "translateX(-50%)",
-          }}
-        />
-        {/* Center dot */}
-        {!hovering && (
-          <div
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              width: "3px",
-              height: "3px",
-              borderRadius: "50%",
-              background: "var(--accent)",
-              transform: "translate(-50%, -50%)",
-            }}
-          />
-        )}
-        {/* Corner marks on hover */}
-        {hovering && (
-          <>
-            {[
-              { top: 0, left: 0 },
-              { top: 0, right: 0 },
-              { bottom: 0, left: 0 },
-              { bottom: 0, right: 0 },
-            ].map((pos, i) => (
-              <div
-                key={i}
-                style={{
-                  position: "absolute",
-                  ...pos,
-                  width: "4px",
-                  height: "4px",
-                  borderTop: i < 2 ? "1px solid var(--accent)" : undefined,
-                  borderBottom: i >= 2 ? "1px solid var(--accent)" : undefined,
-                  borderLeft: i % 2 === 0 ? "1px solid var(--accent)" : undefined,
-                  borderRight: i % 2 === 1 ? "1px solid var(--accent)" : undefined,
-                }}
-              />
-            ))}
-          </>
-        )}
       </div>
-    </div>
+    </>
   );
 }
